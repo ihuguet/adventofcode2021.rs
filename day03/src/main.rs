@@ -8,12 +8,9 @@ enum Bit {
 fn main() {
     let f = File::open("input.txt").expect("Can't open input.txt");
     let f = BufReader::new(f);
-    let lines = f.lines().map(|l| l.unwrap());
-
-    let mut values = Vec::new();
-    for line in lines {
-        values.push(i32::from_str_radix(&line, 2).unwrap());
-    }
+    let values: Vec<i32> = f.lines()
+                            .map(|l| i32::from_str_radix(&l.unwrap(), 2).unwrap())
+                            .collect();
 
     part1(&values);
     part2(&values);
