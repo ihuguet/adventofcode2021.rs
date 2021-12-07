@@ -18,30 +18,19 @@ fn main() {
 
 fn part1(positions: &[i32]) {
     let med = median(&positions);
-
-    let mut sum = 0;
-    for pos in positions {
-        sum += i32::abs(med - pos);
-    }
-        
+    let sum = positions.iter().fold(0, |acc, pos| acc + i32::abs(med - pos));
     println!("Print 1: aligning pos={}, fuel={}", med, sum);
 }
 
 fn part2(positions: &[i32]) {
-    let max_dist = *positions.iter().last().unwrap();
-    let fuel_usages = create_fuel_usages_table(max_dist);
-
     // brute force :-(
-    let mut min = (-1, std::i32::MAX);
-    for pos_guess in 0..=max_dist {
-        let mut sum = 0;
-        for pos in positions {
-            sum += fuel_usages[i32::abs(pos_guess - pos) as usize];
-        }
-        if sum < min.1 {
-            min = (pos_guess, sum);
-        }
-    }
+    let max_dist = *positions.iter().last().unwrap();
+    let min = (0..=max_dist)
+        .map(|pos_guess| {
+            let sum = positions.iter().fold(0, |acc, pos| acc + fuel_usage(pos_guess - pos));
+            (pos_guess, sum)
+        })
+        .min_by_key(|a| a.1).unwrap();
         
     println!("Print 2: aligning pos={}, fuel={}", min.0, min.1);
 }
@@ -59,14 +48,7 @@ fn median(positions: &[i32]) -> i32 {
     }
 }
 
-fn create_fuel_usages_table(max_dist: i32) -> Vec<i32> {
-    let mut table = Vec::with_capacity(1 + max_dist as usize);
-    
-    let mut prev = 0;
-    for dist in 0..=max_dist {
-        prev += dist;
-        table.push(prev);
-    }
-
-    table
+fn fuel_usage(mut dist: i32) -> i32 {
+    dist = i32::abs(dist);
+    dist * (dist + 1) / 2
 }
