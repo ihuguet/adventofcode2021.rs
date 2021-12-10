@@ -1,6 +1,8 @@
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
+type SyntaxResult = Result<Vec<CloseCh>, CloseCh>;
+
 fn main() {
     let f = File::open("input.txt").expect("Can't open input.txt");
     let reader = BufReader::new(f);
@@ -11,7 +13,7 @@ fn main() {
     for line in reader.lines() {
         match validate_line(line.unwrap()) {
             Err(syntax_err) => {
-                errors_score += syntax_err.ch.error_score();
+                errors_score += syntax_err.error_score();
             },
             Ok(completion_str) => {
                 completions_scores.push(calc_completion_score(&completion_str));
@@ -34,10 +36,10 @@ fn validate_line(line: String) -> SyntaxResult {
                 stack.push(ch);
             }
             ')' | ']' | '}' | '>' => {
-                let open_ch = stack.pop().ok_or(SyntaxErr::from_char(ch))?;
                 let close_ch = CloseCh::new(ch);
-                if close_ch.open_char() != open_ch {
-                    return Err(SyntaxErr::new(close_ch));
+                let ok = stack.pop().map_or(false, |ch| ch == close_ch.open_char());
+                if !ok {
+                    return Err(close_ch);
                 }
             }
             c => panic!("Unknown closing char {}", c),
@@ -59,10 +61,6 @@ fn calc_completion_score(completion_str: &Vec<CloseCh>) -> u64 {
 
 struct CloseCh {
     ch: char,
-}
-
-struct SyntaxErr {
-    ch: CloseCh,
 }
 
 impl CloseCh {
@@ -103,15 +101,3 @@ impl CloseCh {
         }
     }
 }
-
-impl SyntaxErr {
-    fn new(ch: CloseCh) -> Self {
-        SyntaxErr { ch }
-    }
-
-    fn from_char(ch: char) -> Self {
-        SyntaxErr { ch: CloseCh::new(ch) }
-    }
-}
-
-type SyntaxResult = Result<Vec<CloseCh>, SyntaxErr>;
