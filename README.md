@@ -18,7 +18,7 @@ Solves
 |   8  | :heavy_check_mark: | :heavy_check_mark: |  |
 |   9  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  10  | :heavy_check_mark: | :heavy_check_mark: |  |
-|  11  | :x: | :x: |  |
+|  11  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  12  | :x: | :x: |  |
 |  13  | :x: | :x: |  |
 |  14  | :x: | :x: |  |
