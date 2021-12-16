@@ -23,7 +23,7 @@ Solves
 |  13  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  14  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  15  | :heavy_check_mark: | :heavy_check_mark: |  |
-|  16  | :x: | :x: |  |
+|  16  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  17  | :x: | :x: |  |
 |  18  | :x: | :x: |  |
 |  19  | :x: | :x: |  |
