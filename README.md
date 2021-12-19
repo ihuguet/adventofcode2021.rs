@@ -25,7 +25,7 @@ Solves
 |  15  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  16  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  17  | :heavy_check_mark: | :heavy_check_mark: |  |
-|  18  | :x: | :x: |  |
+|  18  | :heavy_check_mark: | :heavy_check_mark: |  |
 |  19  | :x: | :x: |  |
 |  20  | :x: | :x: |  |
 |  21  | :x: | :x: |  |
