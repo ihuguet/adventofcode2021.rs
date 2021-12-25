@@ -30,6 +30,6 @@ Solves
 |  20  | :star: | :star: |  |
 |  21  | :star: | :star: |  |
 |  22  | :star: | :star: |  |
-|  22  | :star: | :star: |  |
-|  24  | :x: | :x: |  |
-|  25  | :x: | :x: |  |
+|  23  | :star: | :star: |  |
+|  24  | :star: | :star: |  |
+|  25  | :star: | :star: |  |
